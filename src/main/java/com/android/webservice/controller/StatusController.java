@@ -21,6 +21,9 @@ import com.android.webservice.exception.ResourceNotFoundException;
 import com.android.webservice.model.Status;
 import com.android.webservice.repository.StatusRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class StatusController {
 
