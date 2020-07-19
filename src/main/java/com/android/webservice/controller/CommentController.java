@@ -33,6 +33,7 @@ public class CommentController {
 		return commentRepository.findByStatusId(statusId);
 	}
 	
+	
 	@PostMapping("/status/{statusId}/comment")
 	public Comment addComment(@PathVariable Long statusId,
 			@Valid @RequestBody Comment comment) {

@@ -6,7 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,8 +20,6 @@ import com.android.webservice.exception.ResourceNotFoundException;
 import com.android.webservice.model.Status;
 import com.android.webservice.repository.StatusRepository;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class StatusController {
@@ -36,10 +33,20 @@ public class StatusController {
 		return statusRepository.findAll();
 	}
 	
+	@GetMapping("/status/{statusId}")
+	public Status getStatusById (@Valid @PathVariable Long statusId){
+		
+		return statusRepository.findById(statusId)
+				.orElseThrow(
+				() -> new ResourceNotFoundException("Status not Found " + statusId));
+	}
+	
 	@PostMapping("/status")
 	public Status createStatus(@Valid @RequestBody Status status) {
 		return statusRepository.save(status);
 	}
+	
+	
 	
 	@PutMapping("/status/{statusId}")
 	public Status updateStatus(@PathVariable Long statusId,
